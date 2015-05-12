@@ -1,0 +1,38 @@
+//Common
+@charset "utf-8";
+
+body {
+  font-family: SimHei,Helvetica,Arial,sans-serif;
+  width:100%;
+  margin:0 auto;
+  font-size: 1em;
+}
+
+@mixin compatible($prop, $value){
+  -webkit-#{$prop}: $value;
+  -moz-#{$prop}: if(type_of($value) == number, $value, -moz-#{$value});
+  -khtml-#{$prop}: $value;
+  -o-#{$prop}:$value;
+  -ms-#{$prop}: $value;
+  #{$prop}: $value;
+}
+
+@mixin transparent($value:50){
+  filter: alpha(opacify=($value/100));
+  -moz-opacity: $value/100;
+  -khtml-opacity: $value/100;
+  opacity: $value/100;
+}
+
+.unselectable{
+  @include compatible(use-select, none);
+  @include transparent();
+}
+
+.disableContextMenu{
+  -webkit-touch-callout: none;
+}
+
+.circle{
+  @include compatible(border-radius, 50%);
+}

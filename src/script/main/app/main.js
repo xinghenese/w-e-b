@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2014/12/24.
  */
-require(['./ui/$'], function($){
+require(['../ui/$'], function($){
     var dialog, userlist;
     function showDialog(msg){
         if(!dialog){
