@@ -6,6 +6,7 @@ var gulp = require('gulp')
   , sass = require('gulp-sass')
   , uglify = require('gulp-minify-css')
   , prefix = require('gulp-autoprefixer')
+  , mainBowerFiles = require('main-bower-files')
   ;
 
 gulp.task('sass', function(){
@@ -29,6 +30,17 @@ gulp.task('html', function(){
     .pipe(sourcemaps.init())
     .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('./bin/html'));
+});
+
+gulp.task('lib', function(){
+  gulp.src(mainBowerFiles())
+//    .pipe(uglify())
+    .pipe(gulp.dest('./bin/js/lib'));
+});
+
+gulp.task('test', function(){
+  gulp.src('./src/script/test/*')
+    .pipe(gulp.dest('./test_bin/'));
 });
 
 gulp.task('build', ['sass', 'html']);
